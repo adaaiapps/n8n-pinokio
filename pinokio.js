@@ -29,14 +29,19 @@ module.exports = {
       ];
     } else if (installed) {
       if (running.start) {
-        let local = info.local("start.js");
-        if (local && local.url) {
+        let url = null;
+        try {
+          url = await kernel.local.get("start.js", "url");
+        } catch (e) {
+          // ignore
+        }
+        if (url) {
           return [
             {
               default: true,
               icon: "fa-solid fa-rocket",
               text: "Open Web UI",
-              href: local.url,
+              href: url,
             },
             {
               icon: "fa-solid fa-terminal",

@@ -15,10 +15,10 @@ module.exports = {
       },
     },
     {
-      method: "notify",
+      method: "script.return",
       params: {
-        html: "n8n is running! Click the 'Open Web UI' tab to access the interface.",
-      },
-    },
+        url: "{{input.event[1]}}"
+      }
+    }
   ],
 };

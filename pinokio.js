@@ -28,68 +28,43 @@ module.exports = {
         },
       ];
     } else if (installed) {
+      let url = null;
       if (running.start) {
-        let url = null;
-        let attempts = 0;
-        while (attempts < 5 && !url) {
-          try {
-            await new Promise(resolve => setTimeout(resolve, 500)); // Add a 0.5-second delay
-            const local = kernel.memory.local[kernel.path("start.js")];
-             if (local && local.url) {
-              url = local.url;
-            }
-          } catch (e) {
-            // ignore
+        try {
+          let local = info.local("start.js");
+          if (local && local.url) {
+            url = local.url;
           }
-          attempts++;
+        } catch (e) {
+          // ignore
         }
-        if (url) {
-          return [
-            {
-              default: true,
-              popout: true,
-              icon: "fa-solid fa-rocket",
-              text: "Open Web UI",
-              href: url,
-            },
-            {
-              icon: "fa-solid fa-terminal",
-              text: "Terminal",
-              href: "start.js",
-            },
-          ];
-        } else {
-          return [
-            {
-              default: true,
-              icon: "fa-solid fa-terminal",
-              text: "Terminal",
-              href: "start.js",
-            },
-          ];
-        }
-      } else if (running.update) {
+      }
+      if (url) {
         return [
           {
-            default: true,
+            icon: "fa-solid fa-rocket",
+            text: "Open Web UI",
+            href: url,
+          },
+          {
             icon: "fa-solid fa-terminal",
-            text: "Updating",
+            text: "Terminal",
+            href: "start.js",
+          },
+          {
+            icon: "fa-solid fa-plug",
+            text: "Update",
             href: "update.js",
           },
-        ];
-      } else if (running.reset) {
-        return [
           {
-            default: true,
-            icon: "fa-solid fa-terminal",
-            text: "Resetting",
+            icon: "fa-regular fa-circle-xmark",
+            text: "Reset",
             href: "reset.js",
           },
         ];
       } else {
         return [
           {
-            default: true,
             icon: "fa-solid fa-power-off",
             text: "Start",
             href: "start.js",

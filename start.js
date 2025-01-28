@@ -14,5 +14,11 @@ module.exports = {
         url: "{{input.event[1]}}",
       },
     },
+    {
+      method: "notify",
+      params: {
+        html: "n8n is running! Click the 'Open Web UI' tab to access the interface.",
+      },
+    },
   ],
 };

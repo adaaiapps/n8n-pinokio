@@ -4,20 +4,20 @@ module.exports = {
       method: "shell.run",
       params: {
         message: [
-          "git clone https://github.com/n8n-io/n8n .",
+          "git clone https://github.com/n8n-io/n8n app",
         ],
       },
     },
     {
       method: "shell.run",
       params: {
-        message: "npm install --legacy-peer-deps",
+        message: "cd app && npm install --legacy-peer-deps",
       },
     },
     {
       method: "shell.run",
       params: {
-        message: "npm run build",
+        message: "cd app && npm run build",
       },
     },
     {

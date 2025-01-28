@@ -32,6 +32,12 @@ module.exports = {
         let url = null;
         try {
           url = await kernel.local.get("start.js", "url");
+          // Validate URL
+          try {
+            new URL(url);
+          } catch (e) {
+            url = null;
+          }
         } catch (e) {
           // ignore
         }
@@ -39,6 +45,7 @@ module.exports = {
           return [
             {
               default: true,
+              popout: true,
               icon: "fa-solid fa-rocket",
               text: "Open Web UI",
               href: url,

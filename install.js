@@ -11,7 +11,7 @@ module.exports = {
     {
       method: "shell.run",
       params: {
-        message: "cd app && npm install --legacy-peer-deps",
+        message: "cd app && npm ci",
       },
     },
     {

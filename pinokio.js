@@ -35,7 +35,6 @@ module.exports = {
       return [
         {
           default: true,
-          popout: true,
           icon: "fa-solid fa-rocket",
           text: "Open Web UI",
           href: url,

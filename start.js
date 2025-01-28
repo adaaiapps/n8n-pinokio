@@ -5,7 +5,7 @@ module.exports = {
       method: "shell.run",
       params: {
         message: "n8n start",
-        on: [{ event: "/n8n ready on (.+)/", done: true }],
+        on: [{ event: "/n8n ready on (http:\\/\\/\\S+)/", done: true }],
       },
     },
     {

@@ -7,11 +7,5 @@ module.exports = {
         on: [{ event: "/npm ERR/", break: true }],
       },
     },
-    {
-      method: "notify",
-      params: {
-        html: "Installation complete! Click the 'Start' tab to launch n8n.",
-      },
-    },
   ],
 };

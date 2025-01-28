@@ -30,16 +30,18 @@ module.exports = {
     } else if (installed) {
       if (running.start) {
         let url = null;
-        try {
-          url = await kernel.local.get("start.js", "url");
-          // Validate URL
+        let attempts = 0;
+        while (attempts < 5 && !url) {
           try {
-            new URL(url);
+            await new Promise(resolve => setTimeout(resolve, 500)); // Add a 0.5-second delay
+            const local = kernel.memory.local[kernel.path("start.js")];
+             if (local && local.url) {
+              url = local.url;
+            }
           } catch (e) {
-            url = null;
+            // ignore
           }
-        } catch (e) {
-          // ignore
+          attempts++;
         }
         if (url) {
           return [
